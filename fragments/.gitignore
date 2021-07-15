@@ -1,0 +1,8 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!find-odd-amount.ts
+!same-x-o-amount.ts
+!sum-smallest-numbers.ts

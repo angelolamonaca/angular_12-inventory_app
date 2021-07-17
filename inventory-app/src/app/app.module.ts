@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InventoryTableComponent } from './inventory-table/inventory-table.component';
 import * as fromItem from './store/item.reducer';
 import {MatTableModule} from "@angular/material/table";
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import {MatTableModule} from "@angular/material/table";
     EffectsModule.forRoot([]),
     BrowserAnimationsModule,
     StoreModule.forFeature(fromItem.itemsFeatureKey, fromItem.reducer),
-    MatTableModule
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

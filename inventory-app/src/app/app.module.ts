@@ -9,6 +9,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InventoryTableComponent } from './inventory-table/inventory-table.component';
 import * as fromItem from './store/item.reducer';
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import * as fromItem from './store/item.reducer';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     BrowserAnimationsModule,
-    StoreModule.forFeature(fromItem.itemsFeatureKey, fromItem.reducer)
+    StoreModule.forFeature(fromItem.itemsFeatureKey, fromItem.reducer),
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

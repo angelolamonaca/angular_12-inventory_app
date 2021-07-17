@@ -1,1 +1,39 @@
-<p>inventory-table works!</p>
+<div class="button-container">
+  <button
+    mat-raised-button
+    (click)="addItem()"
+    class="main-button">
+    Add item
+  </button>
+  <button
+    mat-raised-button
+    [disabled]="!dataSource.length"
+    (click)="removeItem()"
+    class="main-button">
+    Remove item
+  </button>
+</div>
+
+<mat-table [dataSource]="dataSource">
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{item.name}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="amount">
+    <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{item.amount}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="createdAt">
+    <mat-header-cell *matHeaderCellDef>Created At</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{item.createdAt}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="lastUpdatedAt">
+    <mat-header-cell *matHeaderCellDef>Last Updated At</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{item.lastUpdatedAt}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>

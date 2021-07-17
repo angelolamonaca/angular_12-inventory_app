@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InventoryTableComponent } from './inventory-table/inventory-table.component';
+import * as fromItem from './store/item.reducer';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { InventoryTableComponent } from './inventory-table/inventory-table.compo
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forFeature(fromItem.itemsFeatureKey, fromItem.reducer)
   ],
   providers: [],
   bootstrap: [AppComponent]

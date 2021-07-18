@@ -38,13 +38,17 @@
       </button>
     </mat-cell>
   </ng-container>
-  <ng-container matColumnDef="createdAt">
-    <mat-header-cell *matHeaderCellDef>Created At</mat-header-cell>
-    <mat-cell *matCellDef="let item">{{item.createdAt}}</mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="lastUpdatedAt">
-    <mat-header-cell *matHeaderCellDef>Last Updated At</mat-header-cell>
-    <mat-cell *matCellDef="let item">{{item.lastUpdatedAt}}</mat-cell>
+  <ng-container matColumnDef="info">
+    <mat-header-cell *matHeaderCellDef>Infos</mat-header-cell>
+    <mat-cell *matCellDef="let item">
+      <button
+        mat-icon-button
+        color="basic"
+        (click)="infoItem(item)"
+        id="info-button">
+        <mat-icon>info_outline</mat-icon>
+      </button>
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="delete">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
@@ -57,7 +61,6 @@
         <mat-icon>delete</mat-icon>
       </button>
     </mat-cell>
-
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -66,10 +69,10 @@
 </mat-table>
 <div class="button-container" align="right">
   <button
-    mat-icon-button
+    mat-fab
     color="primary"
-    (click)="openDialog()"
+    (click)="addItem()"
     id="add-button">
-    <mat-icon>add_circle_outline</mat-icon>
+    <mat-icon>add</mat-icon>
   </button>
 </div>

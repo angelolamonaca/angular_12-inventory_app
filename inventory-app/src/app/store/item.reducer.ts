@@ -5,13 +5,13 @@ import * as ItemActions from './item.actions';
 
 export const itemsFeatureKey = 'items';
 
-export interface State extends EntityState<Item> {
+export interface ItemState extends EntityState<Item> {
   // additional entities state properties
 }
 
 export const adapter: EntityAdapter<Item> = createEntityAdapter<Item>();
 
-export const initialState: State = adapter.getInitialState({
+export const initialState: ItemState = adapter.getInitialState({
   // additional entity state properties
 });
 

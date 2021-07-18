@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule} from '@angular/forms';
 
 import {MatTableModule} from "@angular/material/table";
 import {MatButtonModule} from '@angular/material/button';
@@ -20,11 +21,6 @@ import {InventoryTableComponent} from './inventory-table/inventory-table.compone
 import {ItemDialogComponent} from './item-dialog/item-dialog.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    InventoryTableComponent,
-    ItemDialogComponent
-  ],
   imports: [
     BrowserModule,
     StoreModule.forRoot({}, {}),
@@ -36,7 +32,13 @@ import {ItemDialogComponent} from './item-dialog/item-dialog.component';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule
+  ],
+  declarations: [
+    AppComponent,
+    InventoryTableComponent,
+    ItemDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

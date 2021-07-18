@@ -1,10 +1,10 @@
-import { createAction, props } from '@ngrx/store';
-import { Update } from '@ngrx/entity';
+import {createAction, props} from '@ngrx/store';
+import {Update} from '@ngrx/entity';
 
-import { Item } from './item.model';
+import {Item} from './item.model';
 
 export const loadItems = createAction(
-  '[Item/API] Load Items', 
+  '[Item/API] Load Items',
   props<{ items: Item[] }>()
 );
 

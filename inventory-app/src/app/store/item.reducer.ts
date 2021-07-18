@@ -1,6 +1,6 @@
-import { Action, createReducer, on } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { Item } from './item.model';
+import {Action, createReducer, on} from '@ngrx/store';
+import {EntityState, EntityAdapter, createEntityAdapter} from '@ngrx/entity';
+import {Item} from './item.model';
 import * as ItemActions from './item.actions';
 
 export const itemsFeatureKey = 'items';

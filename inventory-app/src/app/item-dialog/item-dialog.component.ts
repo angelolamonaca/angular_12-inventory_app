@@ -11,7 +11,8 @@ export class ItemDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ItemDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: item) {}
+    @Inject(MAT_DIALOG_DATA) public data: item) {
+  }
 
   save(): void {
     console.log('ok')

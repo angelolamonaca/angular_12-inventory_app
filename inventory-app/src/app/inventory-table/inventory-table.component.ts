@@ -25,7 +25,8 @@ const items: item[] = [
 
 export class InventoryTableComponent {
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {
+  }
 
   displayedColumns: string[] = ['name', 'amount', 'createdAt', 'lastUpdatedAt'];
   dataSource = [...items];

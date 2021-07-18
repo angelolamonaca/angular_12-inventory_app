@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTable} from "@angular/material/table";
 import {MatDialog} from '@angular/material/dialog';
 import {ItemDialogComponent} from "../item-dialog/item-dialog.component";
@@ -7,7 +7,8 @@ import {Store} from "@ngrx/store";
 import {Item} from '../store/item.model';
 import {ItemState} from "../store/item.reducer";
 import {itemSelector} from "../store/item.selector";
-import {deleteItem, getItems} from "../store/item.actions";
+import {deleteItem, getItems, updateItem} from "../store/item.actions";
+import {Update} from "@ngrx/entity";
 
 
 @Component({
@@ -18,7 +19,7 @@ import {deleteItem, getItems} from "../store/item.actions";
 
 export class InventoryTableComponent implements OnInit {
   items: (Item | undefined)[] = [];
-  displayedColumns: string[] = ['name', 'amount', 'createdAt', 'lastUpdatedAt', 'delete'];
+  displayedColumns: string[] = ['status', 'name', 'amount', 'createdAt', 'lastUpdatedAt', 'delete'];
 
   constructor(public dialog: MatDialog,
               private store: Store<ItemState>) {
@@ -45,4 +46,13 @@ export class InventoryTableComponent implements OnInit {
     this.store.dispatch(deleteItem({id: id}))
   }
 
+  increaseItemAmount(item: Item) {
+    let updated: Item = {id: item.id, amount:item.amount+1, lastUpdatedAt:new Date(), name:item.name, createdAt:item.createdAt}
+    this.store.dispatch(updateItem({item: {id:item.id!, changes: updated}}))
+  }
+
+  decreaseItemAmount(item: Item) {
+    let updated: Item = {id: item.id, amount:item.amount-1, lastUpdatedAt:new Date(), name:item.name, createdAt:item.createdAt}
+    this.store.dispatch(updateItem({item: {id:item.id!, changes: updated}}))
+  }
 }

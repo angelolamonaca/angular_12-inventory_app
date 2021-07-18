@@ -22,7 +22,7 @@ export class ItemDialogComponent {
   }
 
   addItem(): void {
-    this.newItem.id = new Date().getTime().toString()
+    this.newItem.id = new Date().getTime()
     this.newItem.createdAt = new Date();
     this.newItem.lastUpdatedAt = new Date();
     this.store.dispatch(addItem({item: this.newItem}))

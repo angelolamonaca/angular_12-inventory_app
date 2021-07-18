@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {item} from "../inventory-table/inventory-table.component";
+import {Item} from '../store/item.model';
 
 @Component({
   selector: 'app-item-dialog',
@@ -11,11 +11,11 @@ export class ItemDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ItemDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: item) {
+    @Inject(MAT_DIALOG_DATA) public data: Item) {
   }
 
   save(): void {
-    console.log('ok')
+
   }
 
 }

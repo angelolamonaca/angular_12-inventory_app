@@ -1,4 +1,4 @@
-<mat-table [dataSource]="dataSource">
+<mat-table [dataSource]="items">
 
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
@@ -16,6 +16,19 @@
     <mat-header-cell *matHeaderCellDef>Last Updated At</mat-header-cell>
     <mat-cell *matCellDef="let item">{{item.lastUpdatedAt}}</mat-cell>
   </ng-container>
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let item">
+      <button
+        mat-icon-button
+        color="warn"
+        (click)="removeItem(item.id)"
+        id="remove-button">
+        <mat-icon>remove_circle_outline</mat-icon>
+      </button>
+    </mat-cell>
+
+  </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -26,15 +39,7 @@
     mat-icon-button
     color="primary"
     (click)="openDialog()"
-    class="main-button">
+    id="add-button">
     <mat-icon>add_circle_outline</mat-icon>
-  </button>
-  <button
-    mat-icon-button
-    color="warn"
-    [disabled]="!dataSource.length"
-    (click)="removeItem()"
-    class="main-button">
-    <mat-icon>remove_circle_outline</mat-icon>
   </button>
 </div>

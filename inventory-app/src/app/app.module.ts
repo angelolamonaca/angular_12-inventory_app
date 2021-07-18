@@ -19,22 +19,24 @@ import {environment} from '../environments/environment';
 
 import {InventoryTableComponent} from './inventory-table/inventory-table.component';
 import {ItemDialogComponent} from './item-dialog/item-dialog.component';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-    EffectsModule.forRoot([]),
-    BrowserAnimationsModule,
-    StoreModule.forFeature(fromItem.itemsFeatureKey, fromItem.reducer),
-    MatTableModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDialogModule,
-    MatInputModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        StoreModule.forRoot({}, {}),
+        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+        EffectsModule.forRoot([]),
+        BrowserAnimationsModule,
+        StoreModule.forFeature(fromItem.itemsFeatureKey, fromItem.reducer),
+        MatTableModule,
+        MatButtonModule,
+        MatIconModule,
+        MatDialogModule,
+        MatInputModule,
+        FormsModule,
+        MatCardModule
+    ],
   declarations: [
     AppComponent,
     InventoryTableComponent,

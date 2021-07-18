@@ -1,7 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Item} from '../store/item.model';
-import {ItemState} from "../store/item.reducer";
 import {Store} from '@ngrx/store';
 import {addItem} from "../store/item.actions";
 

@@ -1,17 +1,18 @@
-import {Action, createReducer, on} from '@ngrx/store';
+import {createReducer, on} from '@ngrx/store';
 import {EntityState, EntityAdapter, createEntityAdapter} from '@ngrx/entity';
 import {Item} from './item.model';
 import * as ItemActions from './item.actions';
 
-export const itemsFeatureKey = 'items';
+export const itemsFeatureKey = 'itemState';
 
 export interface ItemState extends EntityState<Item> {
+  itemState: ItemState;
   // additional entities state properties
 }
 
 export const adapter: EntityAdapter<Item> = createEntityAdapter<Item>();
 
-export const initialState: ItemState = adapter.getInitialState({
+export const initialState: EntityState<Item> = adapter.getInitialState({
   // additional entity state properties
 });
 
@@ -55,5 +56,5 @@ export const {
   selectIds,
   selectEntities,
   selectAll,
-  selectTotal,
+  selectTotal
 } = adapter.getSelectors();

@@ -1,20 +1,21 @@
-<form class="example-form">
+<form class="form" #itemForm="ngForm" (ngSubmit)="addItem()">
 
-  <mat-form-field hideRequiredMarker class="example-full-width" appearance="fill">
+  <mat-form-field hideRequiredMarker class="full-width" appearance="fill">
     <mat-label>Name</mat-label>
-    <input matInput required type="text" placeholder="e.g. iPhone 8">
+    <input matInput required type="text" placeholder="e.g. iPhone 8" [(ngModel)]="newItem.name" name="name">
   </mat-form-field>
-  <mat-form-field hideRequiredMarker class="example-full-width" appearance="fill">
+  <mat-form-field hideRequiredMarker class="full-width" appearance="fill">
     <mat-label>Amount</mat-label>
-    <input matInput required type="number" min=0 value=1>
+    <input matInput required type="number" min=0 value=1 [(ngModel)]="newItem.amount" name="amount">
   </mat-form-field>
 
   <button
+    [disabled]="!itemForm.form.valid"
     mat-raised-button
     color="primary"
-    (click)="save()"
+    type="submit"
     class="main-button">
-    Save
+    Add item
   </button>
 
 </form>

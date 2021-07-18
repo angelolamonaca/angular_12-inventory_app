@@ -1,7 +1,7 @@
 export interface Item {
-  id: string;
+  id?: string;
   name: string;
   amount: number;
-  createdAt: Date;
-  lastUpdatedAt: Date;
+  createdAt?: Date;
+  lastUpdatedAt?: Date;
 }

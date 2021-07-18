@@ -1,1 +1,13 @@
+<p>
+  <mat-toolbar color="primary">
+    <button mat-icon-button disabled>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Inventory App</span>
+    <span class="spacer"></span>
+    <button mat-icon-button (click)="openSnackBar('Made with love by', 'Angelo Lamonaca')">
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>
 <app-inventory-table></app-inventory-table>

@@ -8,6 +8,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from '@angular/material/input';
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
@@ -18,8 +22,7 @@ import {environment} from '../environments/environment';
 
 import {InventoryTableComponent} from './inventory-table/inventory-table.component';
 import {ItemDialogComponent} from './item-dialog/item-dialog.component';
-import {MatCardModule} from "@angular/material/card";
-import {MatTooltipModule} from "@angular/material/tooltip";
+import {ItemDetailsDialog} from './inventory-table/inventory-table.component';
 
 @NgModule({
   imports: [
@@ -34,13 +37,16 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     MatDialogModule,
     MatInputModule,
     FormsModule,
-    MatCardModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatSnackBarModule
   ],
   declarations: [
     AppComponent,
     InventoryTableComponent,
-    ItemDialogComponent
+    ItemDialogComponent,
+    ItemDetailsDialog
   ],
   providers: [],
   bootstrap: [AppComponent]

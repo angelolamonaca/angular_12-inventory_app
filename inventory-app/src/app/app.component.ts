@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'inventory-app';
+  constructor(private snackBar: MatSnackBar) {}
+
+  openSnackBar(message: string, action: string) {
+    let snackBarRef = this.snackBar.open(message, action, {duration: 3000});
+    snackBarRef.onAction().subscribe(() => {
+      window.location.href = "mailto:angelo.lamonaca@gmail.com";
+    });
+  }
+
 }
+

@@ -1,5 +1,7 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, Inject, ViewChild} from '@angular/core';
 import {MatTable} from "@angular/material/table";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {ItemDialogComponent} from "../item-dialog/item-dialog.component";
 
 export interface item {
   name: string;
@@ -23,6 +25,8 @@ const items: item[] = [
 
 export class InventoryTableComponent {
 
+  constructor(public dialog: MatDialog) {}
+
   displayedColumns: string[] = ['name', 'amount', 'createdAt', 'lastUpdatedAt'];
   dataSource = [...items];
 
@@ -32,6 +36,17 @@ export class InventoryTableComponent {
     const randomElementIndex = Math.floor(Math.random() * items.length);
     this.dataSource.push(items[randomElementIndex]);
     this.table.renderRows();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ItemDialogComponent, {
+      width: '250px',
+      data: items
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   removeItem() {

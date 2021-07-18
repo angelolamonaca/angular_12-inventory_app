@@ -65,7 +65,7 @@ export class InventoryTableComponent implements OnInit {
 
 @Component({
   selector: 'item-details-dialog',
-  template: '<h3>Created at</h3><p>{{item.createdAt}}</p><br><h3>Last updated at</h3><p>{{item.lastUpdatedAt}}</p>',
+  template: '<h3>Name</h3><p>{{item.name}}</p><br><h3>Created at</h3><p>{{item.createdAt}}</p><br><h3>Last updated at</h3><p>{{item.lastUpdatedAt}}</p>',
 })
 export class ItemDetailsDialog {
 

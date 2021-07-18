@@ -3,6 +3,10 @@ mat-table {
 }
 
 mat-header-cell, mat-cell {
+  text-align: center;
+  padding: unset !important;
+  margin: unset !important;
+  overflow: unset !important;
   justify-content: center;
 }
 
@@ -10,6 +14,21 @@ mat-header-cell, mat-cell {
   position: absolute;
   right:    20px;
   bottom:   20px;
+}
+
+#empty-state {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  color: #4b4b4b;
+  & .empty-state-text {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
 }
 
 #remove-button mat-icon {

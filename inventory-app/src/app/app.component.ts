@@ -13,7 +13,7 @@ export class AppComponent {
   openSnackBar(message: string, action: string) {
     let snackBarRef = this.snackBar.open(message, action, {duration: 3000});
     snackBarRef.onAction().subscribe(() => {
-      window.location.href = "mailto:angelo.lamonaca@gmail.com";
+      window.open("https://github.com/angelolamonaca/coding-challenge", "_blank");
     });
   }
 

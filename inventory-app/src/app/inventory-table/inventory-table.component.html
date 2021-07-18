@@ -1,4 +1,9 @@
-<mat-table [dataSource]="items">
+<div id="empty-state" *ngIf="items.length==0">
+  <img src="assets/images/empty.svg">
+  <p class="mat-title empty-state-text">Empty inventory</p>
+  <p class="mat-subheading-2 empty-state-text">Add an item and it will show up here.</p>
+</div>
+<mat-table *ngIf="items.length>0" [dataSource]="items">
 
   <ng-container matColumnDef="status">
     <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
@@ -17,7 +22,10 @@
   </ng-container>
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-    <mat-cell *matCellDef="let item">{{item.name}}</mat-cell>
+    <mat-cell *matCellDef="let item"
+              matTooltip="{{item.name}}">
+      <span [innerText]="item.name.length<8? item.name : item.name.substring(0, 6)+'...'"></span>
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="amount">
     <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>

@@ -1,5 +1,5 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {Component} from '@angular/core';
+import {MatDialogRef} from "@angular/material/dialog";
 import {Item} from '../store/item.model';
 import {Store} from '@ngrx/store';
 import {addItem} from "../store/item.actions";
@@ -18,7 +18,6 @@ export class ItemDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ItemDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Item,
     private store: Store<Item>) {
   }
 

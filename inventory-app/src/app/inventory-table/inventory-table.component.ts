@@ -5,10 +5,9 @@ import {ItemDialogComponent} from "../item-dialog/item-dialog.component";
 
 import {Store} from "@ngrx/store";
 import {Item} from '../store/item.model';
-import {ItemState, selectAll} from "../store/item.reducer";
+import {ItemState} from "../store/item.reducer";
 import {itemSelector} from "../store/item.selector";
-import {getItems} from "../store/item.actions";
-import {Action} from "rxjs/internal/scheduler/Action";
+import {deleteItem, getItems} from "../store/item.actions";
 
 
 @Component({
@@ -38,15 +37,12 @@ export class InventoryTableComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ItemDialogComponent, {
-      width: '250px',
-      data: this.items
+      width: '250px'
     });
   }
 
   removeItem(id: string) {
-    console.log('remove item with id: ' + id)
-    this.items.pop();
-    this.table.renderRows();
+    this.store.dispatch(deleteItem({id: id}))
   }
 
 }

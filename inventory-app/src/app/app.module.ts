@@ -18,6 +18,8 @@ import {environment} from '../environments/environment';
 
 import {InventoryTableComponent} from './inventory-table/inventory-table.component';
 import {ItemDialogComponent} from './item-dialog/item-dialog.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   imports: [
@@ -31,7 +33,9 @@ import {ItemDialogComponent} from './item-dialog/item-dialog.component';
     MatIconModule,
     MatDialogModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatCardModule,
+    MatTooltipModule
   ],
   declarations: [
     AppComponent,

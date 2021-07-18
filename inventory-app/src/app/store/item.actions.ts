@@ -51,3 +51,7 @@ export const deleteItems = createAction(
 export const clearItems = createAction(
   '[Item/API] Clear Items'
 );
+
+export const getItems = createAction(
+  '[Item/API] Get items'
+);

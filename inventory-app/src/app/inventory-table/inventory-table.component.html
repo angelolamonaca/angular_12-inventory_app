@@ -1,12 +1,42 @@
-<mat-table [dataSource]="dataSource">
+<mat-table [dataSource]="items">
 
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+    <mat-cell *matCellDef="let item">
+      <mat-icon color="warn"
+                *ngIf="item.amount==0"
+                matTooltip="Out of stock">
+        warning
+      </mat-icon>
+      <mat-icon color="primary"
+                *ngIf="item.amount!=0"
+                matTooltip="In stock">
+        check_box
+      </mat-icon>
+    </mat-cell>
+  </ng-container>
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
     <mat-cell *matCellDef="let item">{{item.name}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="amount">
     <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
-    <mat-cell *matCellDef="let item">{{item.amount}}</mat-cell>
+    <mat-cell *matCellDef="let item">
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="increaseItemAmount(item)">
+        <mat-icon>add_circle</mat-icon>
+      </button>
+      {{item.amount}}
+      <button
+        mat-icon-button
+        color="warn"
+        [disabled]="item.amount==0"
+        (click)="decreaseItemAmount(item)">
+        <mat-icon>remove_circle</mat-icon>
+      </button>
+    </mat-cell>
   </ng-container>
   <ng-container matColumnDef="createdAt">
     <mat-header-cell *matHeaderCellDef>Created At</mat-header-cell>
@@ -15,6 +45,19 @@
   <ng-container matColumnDef="lastUpdatedAt">
     <mat-header-cell *matHeaderCellDef>Last Updated At</mat-header-cell>
     <mat-cell *matCellDef="let item">{{item.lastUpdatedAt}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let item">
+      <button
+        mat-icon-button
+        color="warn"
+        (click)="removeItem(item.id)"
+        id="remove-button">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -26,15 +69,7 @@
     mat-icon-button
     color="primary"
     (click)="openDialog()"
-    class="main-button">
+    id="add-button">
     <mat-icon>add_circle_outline</mat-icon>
-  </button>
-  <button
-    mat-icon-button
-    color="warn"
-    [disabled]="!dataSource.length"
-    (click)="removeItem()"
-    class="main-button">
-    <mat-icon>remove_circle_outline</mat-icon>
   </button>
 </div>

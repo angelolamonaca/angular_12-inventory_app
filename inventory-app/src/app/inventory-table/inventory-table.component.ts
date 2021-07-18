@@ -1,15 +1,15 @@
-import {Component, Inject, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTable} from "@angular/material/table";
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import {ItemDialogComponent} from "../item-dialog/item-dialog.component";
-import {Item} from '../store/item.model';
 
-const items: Item[] = [
-  {id: '1', name: 'iPhone 5', amount: 1, createdAt: new Date(), lastUpdatedAt: new Date("2014-02-28")},
-  {id: '2', name: 'iPhone 6', amount: 2, createdAt: new Date(), lastUpdatedAt: new Date("2014-02-28")},
-  {id: '3', name: 'iPhone 7', amount: 3, createdAt: new Date(), lastUpdatedAt: new Date("2014-02-28")},
-  {id: '4', name: 'iPhone 8', amount: 4, createdAt: new Date(), lastUpdatedAt: new Date("2014-02-28")},
-];
+import {Store} from "@ngrx/store";
+import {Item} from '../store/item.model';
+import {ItemState} from "../store/item.reducer";
+import {itemSelector} from "../store/item.selector";
+import {deleteItem, getItems, updateItem} from "../store/item.actions";
+import {Update} from "@ngrx/entity";
+
 
 @Component({
   selector: 'app-inventory-table',
@@ -17,36 +17,42 @@ const items: Item[] = [
   styleUrls: ['./inventory-table.component.scss']
 })
 
-export class InventoryTableComponent {
+export class InventoryTableComponent implements OnInit {
+  items: (Item | undefined)[] = [];
+  displayedColumns: string[] = ['status', 'name', 'amount', 'createdAt', 'lastUpdatedAt', 'delete'];
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog,
+              private store: Store<ItemState>) {
   }
 
-  displayedColumns: string[] = ['name', 'amount', 'createdAt', 'lastUpdatedAt'];
-  dataSource = [...items];
+  ngOnInit(): void {
+    this.store.select(itemSelector).subscribe(
+      items => {
+        this.store.dispatch(getItems())
+        this.items = Object.values(items.entities)
+      }
+    )
+  }
 
   @ViewChild(MatTable) table!: MatTable<Item>;
 
-  addItem() {
-    const randomElementIndex = Math.floor(Math.random() * items.length);
-    this.dataSource.push(items[randomElementIndex]);
-    this.table.renderRows();
-  }
-
   openDialog(): void {
     const dialogRef = this.dialog.open(ItemDialogComponent, {
-      width: '250px',
-      data: items
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      width: '250px'
     });
   }
 
-  removeItem() {
-    this.dataSource.pop();
-    this.table.renderRows();
+  removeItem(id: string) {
+    this.store.dispatch(deleteItem({id: id}))
   }
 
+  increaseItemAmount(item: Item) {
+    let updated: Item = {id: item.id, amount:item.amount+1, lastUpdatedAt:new Date(), name:item.name, createdAt:item.createdAt}
+    this.store.dispatch(updateItem({item: {id:item.id!, changes: updated}}))
+  }
+
+  decreaseItemAmount(item: Item) {
+    let updated: Item = {id: item.id, amount:item.amount-1, lastUpdatedAt:new Date(), name:item.name, createdAt:item.createdAt}
+    this.store.dispatch(updateItem({item: {id:item.id!, changes: updated}}))
+  }
 }

@@ -7,16 +7,22 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InventoryTableComponent } from './inventory-table/inventory-table.component';
+import {InventoryTableComponent} from './inventory-table/inventory-table.component';
+import { ItemDialogComponent } from './item-dialog/item-dialog.component';
+
 import * as fromItem from './store/item.reducer';
+
 import {MatTableModule} from "@angular/material/table";
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InventoryTableComponent
+    InventoryTableComponent,
+    ItemDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +33,9 @@ import {MatIconModule} from '@angular/material/icon';
     StoreModule.forFeature(fromItem.itemsFeatureKey, fromItem.reducer),
     MatTableModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

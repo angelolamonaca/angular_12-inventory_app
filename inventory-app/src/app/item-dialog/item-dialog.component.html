@@ -1,0 +1,20 @@
+<form class="example-form">
+
+  <mat-form-field hideRequiredMarker  class="example-full-width" appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput required  type="text" placeholder="e.g. iPhone 8">
+  </mat-form-field>
+  <mat-form-field hideRequiredMarker  class="example-full-width" appearance="fill">
+    <mat-label>Amount</mat-label>
+    <input matInput required type="number" min=0 value=1>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="save()"
+    class="main-button">
+    Save
+  </button>
+
+</form>

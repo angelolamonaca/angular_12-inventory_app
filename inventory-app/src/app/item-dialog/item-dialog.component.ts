@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
-import {Item} from '../store/item.model';
 import {Store} from '@ngrx/store';
+import {Item} from '../store/item.model';
 import {addItem} from "../store/item.actions";
 
 @Component({

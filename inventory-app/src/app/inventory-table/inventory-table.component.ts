@@ -3,7 +3,7 @@ import {MatTable} from "@angular/material/table";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {ItemDialogComponent} from "../item-dialog/item-dialog.component";
 
-import {Store} from "@ngrx/store";
+import {select, Store} from "@ngrx/store";
 import {Item} from '../store/item.model';
 import {ItemState} from "../store/item.reducer";
 import {itemSelector} from "../store/item.selector";
@@ -25,7 +25,7 @@ export class InventoryTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.select(itemSelector).subscribe(
+    this.store.pipe(select(itemSelector)).subscribe(
       items => {
         this.store.dispatch(getItems())
         this.items = Object.values(items.entities)

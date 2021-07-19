@@ -1,6 +1,9 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ItemDialogComponent} from './item-dialog.component';
+import {MatDialogRef} from "@angular/material/dialog";
+import {Store} from "@ngrx/store";
+import {FormsModule} from "@angular/forms";
 
 describe('ItemDialogComponent', () => {
   let component: ItemDialogComponent;
@@ -8,7 +11,21 @@ describe('ItemDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ItemDialogComponent]
+      imports: [
+        FormsModule
+      ],
+      declarations: [
+        ItemDialogComponent
+      ],
+      providers: [
+        {
+          provide: MatDialogRef,
+          useValue: {}
+        },
+        {
+          provide: Store,
+          useValue: {}
+        }],
     })
       .compileComponents();
   });

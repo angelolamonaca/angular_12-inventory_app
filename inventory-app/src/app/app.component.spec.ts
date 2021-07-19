@@ -1,11 +1,23 @@
 import {TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         AppComponent
+      ],
+      providers: [
+        {
+          provide: MatSnackBar,
+          useValue: {}
+        },
+        {
+          provide: MatDialog,
+          useValue: {}
+        }
       ],
     }).compileComponents();
   });
@@ -26,6 +38,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('inventory-app app is running!');
+    expect(compiled.querySelector('mat-toolbar span')?.textContent).toContain('Inventory App');
   });
 });

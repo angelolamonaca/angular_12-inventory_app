@@ -11,7 +11,10 @@ export class AppComponent {
   constructor(private snackBar: MatSnackBar) {}
 
   openSnackBar(message: string, action: string) {
-    let snackBarRef = this.snackBar.open(message, action, {duration: 3000});
+    let snackBarRef = this.snackBar.open(message, action, {
+      duration: 3000,
+      panelClass: ['custom-snackbar']
+    });
     snackBarRef.onAction().subscribe(() => {
       window.open("https://github.com/angelolamonaca/coding-challenge", "_blank");
     });

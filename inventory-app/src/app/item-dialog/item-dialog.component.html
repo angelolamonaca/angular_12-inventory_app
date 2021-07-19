@@ -6,7 +6,7 @@
   </mat-form-field>
   <mat-form-field hideRequiredMarker class="full-width" appearance="fill">
     <mat-label>Amount</mat-label>
-    <input matInput required type="number" min=0 value=1 [(ngModel)]="newItem.amount" name="amount">
+    <input matInput required type="number" min=0 value=1 [(ngModel)]="newItem.amount" pattern="[0-9]*" name="amount">
   </mat-form-field>
 
   <button

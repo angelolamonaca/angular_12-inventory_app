@@ -36,28 +36,28 @@ export class InventoryTableComponent implements OnInit {
   @ViewChild(MatTable) table!: MatTable<Item>;
 
   addItem(): void {
-    const dialogRef = this.dialog.open(ItemDialogComponent, {
+    const dialogRef: MatDialogRef<ItemDialogComponent> = this.dialog.open(ItemDialogComponent, {
       width: '250px'
     });
   }
 
   infoItem(item: Item): void {
-    const dialogRef = this.dialog.open(ItemDetailsDialog, {
+    const dialogRef: MatDialogRef<ItemDetailsDialog> = this.dialog.open(ItemDetailsDialog, {
       width: '250px',
       data: item
     });
   }
 
-  removeItem(id: string) {
+  removeItem(id: string): void {
     this.store.dispatch(deleteItem({id: id}))
   }
 
-  increaseItemAmount(item: Item) {
+  increaseItemAmount(item: Item): void {
     let updated: Item = {id: item.id, amount:item.amount+1, lastUpdatedAt:new Date(), name:item.name, createdAt:item.createdAt}
     this.store.dispatch(updateItem({item: {id:item.id!, changes: updated}}))
   }
 
-  decreaseItemAmount(item: Item) {
+  decreaseItemAmount(item: Item): void {
     let updated: Item = {id: item.id, amount:item.amount-1, lastUpdatedAt:new Date(), name:item.name, createdAt:item.createdAt}
     this.store.dispatch(updateItem({item: {id:item.id!, changes: updated}}))
   }
@@ -65,16 +65,20 @@ export class InventoryTableComponent implements OnInit {
 
 @Component({
   selector: 'item-details-dialog',
-  template: '<h3>Name</h3><p>{{item.name}}</p><br><h3>Created at</h3><p>{{item.createdAt}}</p><br><h3>Last updated at</h3><p>{{item.lastUpdatedAt}}</p>',
+  template: '' +
+    '<h3>Name</h3>' +
+    '<p>{{item.name}}</p>' +
+    '<br>' +
+    '<h3>Created at</h3>' +
+    '<p>{{item.createdAt}}</p>' +
+    '<br>' +
+    '<h3>Last updated at</h3>' +
+    '<p>{{item.lastUpdatedAt}}</p>',
 })
 export class ItemDetailsDialog {
 
   constructor(
     public dialogRef: MatDialogRef<ItemDetailsDialog>,
     @Inject(MAT_DIALOG_DATA) public item: Item) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 
 }

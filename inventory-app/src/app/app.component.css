@@ -1,3 +1,8 @@
 .spacer {
   flex: 1 1 auto;
 }
+
+::ng-deep .custom-snackbar {
+  color: white;
+  background-color: #ce8de0;
+}

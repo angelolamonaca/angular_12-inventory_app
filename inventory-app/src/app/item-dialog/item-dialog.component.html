@@ -2,11 +2,13 @@
 
   <mat-form-field hideRequiredMarker class="full-width" appearance="fill">
     <mat-label>Name</mat-label>
-    <input matInput required type="text" placeholder="e.g. iPhone 8" [(ngModel)]="newItem.name" name="name">
+    <input matInput required type="text" placeholder="e.g. iPhone 8" [(ngModel)]="newItem.name" name="name"
+           id="itemName">
   </mat-form-field>
   <mat-form-field hideRequiredMarker class="full-width" appearance="fill">
     <mat-label>Amount</mat-label>
-    <input matInput required type="number" min=0 value=1 [(ngModel)]="newItem.amount" pattern="[0-9]*" name="amount">
+    <input matInput required type="number" min=0 value=1 [(ngModel)]="newItem.amount" pattern="[0-9]*" name="amount"
+           id="itemAmount">
   </mat-form-field>
 
   <button
@@ -14,7 +16,8 @@
     mat-raised-button
     color="primary"
     type="submit"
-    class="main-button">
+    class="main-button"
+    id="addItem">
     Add item
   </button>
 

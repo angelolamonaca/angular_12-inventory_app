@@ -68,10 +68,10 @@ export class InventoryTableComponent implements OnInit {
     '<p>{{item.name}}</p>' +
     '<br>' +
     '<h3>Created at</h3>' +
-    '<p>{{createdAt}}</p>' +
+    '<p data-test-id="createdDate">{{createdAt}}</p>' +
     '<br>' +
     '<h3>Last updated at</h3>' +
-    '<p>{{lastUpdatedAt}}</p>',
+    '<p data-test-id="lastUpdatedDate">{{lastUpdatedAt}}</p>',
 })
 export class ItemDetailsDialog {
 

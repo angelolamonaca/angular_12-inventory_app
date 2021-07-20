@@ -33,7 +33,7 @@
       <button
         mat-icon-button
         color="primary"
-        (click)="increaseItemAmount(item)">
+        (click)="increaseItemAmount(item.id, item.amount)">
         <mat-icon>add_circle</mat-icon>
       </button>
       {{item.amount}}
@@ -41,7 +41,7 @@
         mat-icon-button
         color="warn"
         [disabled]="item.amount==0"
-        (click)="decreaseItemAmount(item)">
+        (click)="decreaseItemAmount(item.id, item.amount)">
         <mat-icon>remove_circle</mat-icon>
       </button>
     </mat-cell>

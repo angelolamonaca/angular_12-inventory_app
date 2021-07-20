@@ -6,6 +6,12 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+/**
+ * @author angelo.lamonaca@gmail.com
+ *
+ */
+
 export class AppComponent {
   title = 'inventory-app';
   constructor(private snackBar: MatSnackBar) {}

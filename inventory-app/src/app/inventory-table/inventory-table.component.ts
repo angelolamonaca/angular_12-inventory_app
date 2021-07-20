@@ -17,7 +17,7 @@ import {deleteItem, getItems, updateItem} from "../store/item.actions";
 })
 
 /**
- * @author Angelo Lamonaca
+ * @author angelo.lamonaca@gmail.com
  *
  */
 

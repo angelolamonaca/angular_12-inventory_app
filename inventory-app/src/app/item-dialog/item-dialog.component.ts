@@ -9,6 +9,12 @@ import {addItem} from "../store/item.actions";
   templateUrl: './item-dialog.component.html',
   styleUrls: ['./item-dialog.component.scss']
 })
+
+/**
+ * @author angelo.lamonaca@gmail.com
+ *
+ */
+
 export class ItemDialogComponent {
 
   newItem: Item = {

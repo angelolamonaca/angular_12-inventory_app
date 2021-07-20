@@ -66,7 +66,7 @@ describe('Item Reducer', () => {
           amount: 1
         }
       });
-      fromItem.reducer(initialState, addItemAction);
+      let state = fromItem.reducer(initialState, addItemAction);
 
       const updateItemAction = updateItem({
         item: {
@@ -76,7 +76,7 @@ describe('Item Reducer', () => {
             amount: 2}
         }
       });
-      const state = fromItem.reducer(initialState, updateItemAction);
+      state = fromItem.reducer(state, updateItemAction);
       expect(state).toEqual(newState);
     });
   });
@@ -94,12 +94,12 @@ describe('Item Reducer', () => {
           amount: 1
         }
       });
-      fromItem.reducer(initialState, addItemAction);
+      let state = fromItem.reducer(initialState, addItemAction);
 
       const deleteItemAction = deleteItem({
-        id: "1"
+        id: 1
       });
-      const state = fromItem.reducer(initialState, deleteItemAction);
+      state = fromItem.reducer(state, deleteItemAction);
       expect(state).toEqual(newState);
     });
   });

@@ -40,7 +40,7 @@ export const updateItems = createAction(
 
 export const deleteItem = createAction(
   '[Item/API] Delete Item',
-  props<{ id: string }>()
+  props<{ id: number }>()
 );
 
 export const deleteItems = createAction(

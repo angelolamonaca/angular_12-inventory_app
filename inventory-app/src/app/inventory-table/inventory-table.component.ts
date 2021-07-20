@@ -48,18 +48,16 @@ export class InventoryTableComponent implements OnInit {
     });
   }
 
-  removeItem(id: string): void {
+  removeItem(id: number): void {
     this.store.dispatch(deleteItem({id: id}))
   }
 
-  increaseItemAmount(item: Item): void {
-    let updated: Item = {id: item.id, amount:item.amount+1, lastUpdatedAt:new Date(), name:item.name, createdAt:item.createdAt}
-    this.store.dispatch(updateItem({item: {id:item.id!, changes: updated}}))
+  increaseItemAmount(id: number, amount: number): void {
+    this.store.dispatch(updateItem({item: {id:id, changes: {amount:amount+1, lastUpdatedAt:new Date().toISOString()}}}))
   }
 
-  decreaseItemAmount(item: Item): void {
-    let updated: Item = {id: item.id, amount:item.amount-1, lastUpdatedAt:new Date(), name:item.name, createdAt:item.createdAt}
-    this.store.dispatch(updateItem({item: {id:item.id!, changes: updated}}))
+  decreaseItemAmount(id: number, amount: number): void {
+    this.store.dispatch(updateItem({item: {id:id, changes: {amount:amount-1, lastUpdatedAt:new Date().toISOString()}}}))
   }
 }
 
@@ -70,12 +68,15 @@ export class InventoryTableComponent implements OnInit {
     '<p>{{item.name}}</p>' +
     '<br>' +
     '<h3>Created at</h3>' +
-    '<p>{{item.createdAt}}</p>' +
+    '<p>{{createdAt}}</p>' +
     '<br>' +
     '<h3>Last updated at</h3>' +
-    '<p>{{item.lastUpdatedAt}}</p>',
+    '<p>{{lastUpdatedAt}}</p>',
 })
 export class ItemDetailsDialog {
+
+  createdAt: Date = new Date(this.item.createdAt!);
+  lastUpdatedAt: Date = new Date(this.item.lastUpdatedAt!);
 
   constructor(
     public dialogRef: MatDialogRef<ItemDetailsDialog>,

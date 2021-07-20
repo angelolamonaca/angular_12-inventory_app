@@ -16,6 +16,11 @@ import {deleteItem, getItems, updateItem} from "../store/item.actions";
   styleUrls: ['./inventory-table.component.scss']
 })
 
+/**
+ * @author Angelo Lamonaca
+ *
+ */
+
 export class InventoryTableComponent implements OnInit {
   items: (Item | undefined)[] = [];
   displayedColumns: string[] = ['status', 'name', 'amount', 'info', 'delete'];
@@ -25,6 +30,7 @@ export class InventoryTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Retrieve items from the store
     this.store.pipe(select(itemSelector)).subscribe(
       items => {
         this.store.dispatch(getItems())
@@ -35,29 +41,65 @@ export class InventoryTableComponent implements OnInit {
 
   @ViewChild(MatTable) table!: MatTable<Item>;
 
+  /**
+   * Opens a dialog with a form for inserting the item in the store
+   *
+   */
   addItem(): void {
-    const dialogRef: MatDialogRef<ItemDialogComponent> = this.dialog.open(ItemDialogComponent, {
+    this.dialog.open(ItemDialogComponent, {
       width: '250px'
     });
   }
 
+  /**
+   * Opens a dialog with some item's infos (name, createdBy and lastUpdatedAt)
+   *
+   * @param item
+   */
   infoItem(item: Item): void {
-    const dialogRef: MatDialogRef<ItemDetailsDialog> = this.dialog.open(ItemDetailsDialog, {
+    this.dialog.open(ItemDetailsDialog, {
       width: '250px',
       data: item
     });
   }
 
+  /**
+   * Remove an item from the store
+   *
+   * @param id id of the item
+   */
   removeItem(id: number): void {
     this.store.dispatch(deleteItem({id: id}))
   }
 
+  /**
+   * Increase the item's amount (update the lastUpdatedAt too)
+   *
+   * @param id id of the item
+   * @param amount the current amount
+   */
   increaseItemAmount(id: number, amount: number): void {
-    this.store.dispatch(updateItem({item: {id:id, changes: {amount:amount+1, lastUpdatedAt:new Date().toISOString()}}}))
+    this.store.dispatch(updateItem({
+      item: {
+        id: id,
+        changes: {amount: amount + 1, lastUpdatedAt: new Date().toISOString()}
+      }
+    }))
   }
 
+  /**
+   * Decrease the item's amount (update the lastUpdatedAt too)
+   *
+   * @param id id of the item
+   * @param amount the current amount
+   */
   decreaseItemAmount(id: number, amount: number): void {
-    this.store.dispatch(updateItem({item: {id:id, changes: {amount:amount-1, lastUpdatedAt:new Date().toISOString()}}}))
+    this.store.dispatch(updateItem({
+      item: {
+        id: id,
+        changes: {amount: amount - 1, lastUpdatedAt: new Date().toISOString()}
+      }
+    }))
   }
 }
 
@@ -79,7 +121,7 @@ export class ItemDetailsDialog {
   lastUpdatedAt: Date = new Date(this.item.lastUpdatedAt!);
 
   constructor(
-    public dialogRef: MatDialogRef<ItemDetailsDialog>,
-    @Inject(MAT_DIALOG_DATA) public item: Item) {}
+    @Inject(MAT_DIALOG_DATA) public item: Item) {
+  }
 
 }

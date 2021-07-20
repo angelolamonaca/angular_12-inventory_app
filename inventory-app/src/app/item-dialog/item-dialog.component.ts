@@ -21,6 +21,13 @@ export class ItemDialogComponent {
     private store: Store<Item>) {
   }
 
+  /**
+   * Insert the item in the store
+   * (id is set using number of milliseconds since 1 January 1970)
+   * (createdAt and lastUpdatedAt Date are set using a string in simplified extended
+   * ISO format (ISO 8601) to avoid different recordings on different timelines based on the local timezone)
+   *
+   */
   addItem(): void {
     this.newItem.id = new Date().getTime()
     this.newItem.createdAt = new Date().toISOString()
